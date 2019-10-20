@@ -6,20 +6,19 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tomas.zomato.R
+import com.tomas.zomato.core.DataHolder
+import com.tomas.zomato.core.Router
 import com.tomas.zomato.home.interfaces.MainViewInterface
 import com.tomas.zomato.home.models.City
 import com.tomas.zomato.home.models.SuggestedAdapter
-import com.tomas.zomato.core.DataHolder
-import com.tomas.zomato.core.Router
 import com.tomas.zomato.utils.hideKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity(), MainViewInterface, KoinComponent {
 
-    private val presenter by inject<MainPresenter> { parametersOf(this) }
+    private val presenter = MainPresenter(this)
     private val dataHolder by inject<DataHolder>()
     private val router by inject<Router>()
     private val suggestedAdapter = SuggestedAdapter(view = this)

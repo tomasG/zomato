@@ -4,15 +4,13 @@ import com.tomas.zomato.R
 import com.tomas.zomato.restaturants.interfaces.RestaurantsActivityInterface
 import com.tomas.zomato.restaturants.interfaces.RestaurantsPresentersInterface
 import com.tomas.zomato.restaturants.models.Restaurant
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
 
-class RestaurantsPresenter(private val view: RestaurantsActivityInterface,
-                           private val fetcher: (reference:Int) -> String) : RestaurantsPresentersInterface,
-    KoinComponent {
+class RestaurantsPresenter(
+    private val view: RestaurantsActivityInterface,
+    private val fetcher: (reference: Int) -> String
+) : RestaurantsPresentersInterface {
 
-    private val dao by inject<DaoRestaurants> { parametersOf(this) }
+    private val dao = DaoRestaurants(this)
 
     override fun searchRestaurantsByLocation(entityId: Int) {
         dao.getRestaurants(entityId)

@@ -13,7 +13,9 @@ class Router {
     }
 
     fun goToDetails(context: Context){
-        context.startActivity(Intent(context, RestaurantDetailsActivity::class.java))
+        val intent = Intent(context,RestaurantDetailsActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
     }
 
     fun navigateToPhoneDialer(context: Context, number: String) {

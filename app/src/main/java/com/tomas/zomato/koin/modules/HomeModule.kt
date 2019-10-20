@@ -6,7 +6,9 @@ import com.tomas.zomato.home.interfaces.MainPresenterInterface
 import com.tomas.zomato.home.interfaces.MainViewInterface
 import org.koin.dsl.module
 
-val homeModule = module {
-    single { (view: MainViewInterface) -> MainPresenter(view) }
-    single { (presenter: MainPresenterInterface) -> DaoHome(presenter) }
+object HomeModule {
+    val homeModule = module {
+        single { (view: MainViewInterface) -> MainPresenter(view) }
+        single { (presenter: MainPresenterInterface) -> DaoHome(presenter) }
+    }
 }
