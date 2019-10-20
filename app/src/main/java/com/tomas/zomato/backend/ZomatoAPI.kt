@@ -1,6 +1,7 @@
 package com.tomas.zomato.backend
 
 import com.tomas.zomato.home.models.CitiesResponse
+import com.tomas.zomato.home.models.RestaurantDetailsResponse
 import com.tomas.zomato.restaturants.models.RestaurantsResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -19,8 +20,14 @@ interface ZomatoAPI {
     @Headers("user-key: $user_key")
     @GET("api/v2.1/search")
     fun getRestaurants(
-        @Query("entity_di") entityId: Int,
+        @Query("entity_id") entityId: Int,
         @Query("entity_type") entityType: String = "city",
         @Query("count") count: Int = 100
     ): Call<RestaurantsResponse>
+
+    @Headers("user-key: $user_key")
+    @GET("api/v2.1/restaurant")
+    fun getRestaurantDetails(
+        @Query("res_id") restaurantId: Long
+    ): Call<RestaurantDetailsResponse>
 }

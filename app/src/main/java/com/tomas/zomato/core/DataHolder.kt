@@ -7,5 +7,8 @@ class DataHolder(
     var city: City = City(),
     var restaurant: Restaurant = Restaurant()
 ){
-    val entityId:Int = city.entity_id
+    val entityId:Int
+            get() = city.entity_id
+    val restaurantId:String
+            get() = restaurant.id
 }

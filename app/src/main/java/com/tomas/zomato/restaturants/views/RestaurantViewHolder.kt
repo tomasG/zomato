@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_suggested_city.view.*
 class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val restaurantName: TextView = view.restaurantName
     val restaurantLocation: TextView = view.restaurantLocation
-    val restaurantrating: RatingBar = view.restaurantRating
+    val restaurantRating: RatingBar = view.restaurantRating
     val restaurantRatingText: TextView = view.restaurantRatingNumberText
     val restaurantVotes: TextView = view.restaurantVotesText
 }

@@ -18,7 +18,10 @@ import org.koin.core.parameter.parametersOf
 class RestaurantsActivity : AppCompatActivity(), RestaurantsActivityInterface, KoinComponent {
 
     private val dataHolder by inject<DataHolder>()
-    private val presenter by inject<RestaurantsPresenter> { parametersOf(this) }
+    private val fetcher = { reference: Int -> getString(reference) }
+    private val presenter by inject<RestaurantsPresenter> {
+        parametersOf(this, fetcher)
+    }
     private lateinit var restaurantAdapter: RestaurantAdapter
     private val router by inject<Router>()
 
@@ -35,7 +38,10 @@ class RestaurantsActivity : AppCompatActivity(), RestaurantsActivityInterface, K
             recyclerView = restaurantRecyclerView
         )
         restaurantRecyclerView.apply {
-            layoutManager = LinearLayoutManager(this@RestaurantsActivity, RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(
+                this@RestaurantsActivity,
+                RecyclerView.VERTICAL, false
+            )
             adapter = restaurantAdapter
         }
 
@@ -52,6 +58,6 @@ class RestaurantsActivity : AppCompatActivity(), RestaurantsActivityInterface, K
 
     override fun onRestaurantClicked(restaurant: Restaurant) {
         dataHolder.restaurant = restaurant
-        router.
+        router.goToDetails(this@RestaurantsActivity)
     }
 }

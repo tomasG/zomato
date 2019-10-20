@@ -57,7 +57,7 @@ class RestaurantAdapter(
         holder.restaurantName.text = restaurant.name
         holder.restaurantLocation.text = restaurant.location?.locality
         holder.restaurantRatingText.text = restaurant.user_rating?.aggregate_rating
-        holder.restaurantrating.rating = restaurant.user_rating?.aggregate_rating?.toFloat() ?: 0.0F
+        holder.restaurantRating.rating = restaurant.user_rating?.aggregate_rating?.toFloat() ?: 0.0F
         holder.restaurantVotes.text = restaurant.user_rating?.votesText
         holder.itemView.setOnClickListener {
             view?.onRestaurantClicked(list[position])
